@@ -1,1 +1,43 @@
-<p>register works!</p>
+<div class="register-page">
+
+    <div class="register-container">
+        
+        <h2>Task Management System</h2>
+        <h3>Register</h3>
+
+        <form [formGroup]="registerForm" class="register-form" (ngSubmit)="onSubmit()">
+
+            <div class="register-form-group">
+                <label for="name">Name</label> 
+                <input id="name" formControlName="name" type="text">
+            </div>
+
+            <div class="register-form-group">
+                <label for="email">Email</label>
+                <input id="email" formControlName="email" type="email">
+            </div>
+
+            <div class="register-form-group">
+                <label for="password">Password</label>
+                <input id="password" formControlName="password" type="password">
+            </div>
+
+            <div class="register-form-group">
+                <label for="confirmPassword">Confirm Password</label>
+                <input id="confirmPassword" formControlName="confirmPassword" type="password">
+            </div>
+
+            <div class="register-form-group">
+                <label for="role">User role</label>
+                <select id="role" formControlName="role">
+                    <option value="user">User</option>
+                    <option value="admin">Admin</option>
+                </select>
+            </div>
+
+            <button id="register-button" type="submit">Register</button>
+            
+        </form>
+
+    </div>
+</div>
