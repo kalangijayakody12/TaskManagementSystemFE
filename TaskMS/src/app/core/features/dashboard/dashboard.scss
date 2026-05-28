@@ -1,0 +1,29 @@
+.dashboard-content {
+    display:flex;
+    flex-direction:row;
+    gap:1rem;
+    padding:1rem;
+    background-color:#f0f0f0;
+}
+
+.projects-section {
+    display:flex;
+    flex-direction:column;
+    padding:0.5rem;
+    background-color:white;
+}
+
+.tasks-section {
+    display:flex;
+    flex-direction:column;
+    padding:1rem;
+    background-color:white;
+    flex:1;
+}
+
+.recent-tasks {
+    background-color:rgb(212, 205, 205);
+    border-radius:1rem;
+    border:1px solid #ccc;
+    padding:1rem;
+}   

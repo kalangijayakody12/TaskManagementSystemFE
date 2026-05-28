@@ -1,1 +1,13 @@
-<p>dashboard works!</p>
+<app-navbar></app-navbar>
+
+<div class="dashboard-content">
+    <div class="projects-section">
+        <app-project *ngFor="let project of projects" [projectId]="project.projectId" [projectName]="project.projectName" [remainingTasks]="project.remainingTasks"></app-project>
+    </div>
+    <div class="tasks-section">
+        <div class="recent-tasks">
+            <h3>Recent Tasks</h3>
+            <app-task></app-task>
+        </div>
+    </div>
+</div>
