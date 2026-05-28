@@ -1,0 +1,19 @@
+.task-popup-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+}
+
+.task-form form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.task-form input {
+    margin-bottom: 0.8rem;
+    padding: 0.5rem;
+    width: 12rem;
+}
+

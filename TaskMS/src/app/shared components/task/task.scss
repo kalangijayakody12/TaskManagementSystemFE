@@ -1,0 +1,36 @@
+.table-container{
+    background-color: white;
+    border-radius: 1rem;
+    padding: 1rem;
+}
+
+.task-table{
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+}
+
+.task-table thead{
+    background-color: #24b6cc;
+    color: white;
+}
+
+.task-table th{
+    padding: 0.8rem;
+    text-align: left;
+    font-weight: bold;
+}
+
+.task-table td{
+    padding: 1rem;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.task-table tbody tr{
+    transition: background-color 0.2s ease;
+}
+
+.task-table tbody tr:hover{
+    background-color: #f5f9fc;
+    cursor: pointer;
+}

@@ -1,0 +1,30 @@
+<div class="table-container">
+
+    <table class="task-table">
+
+        <thead>
+            <tr>
+                <th>TaskId</th>
+                <th>Name</th>
+                <th>StartDate</th>
+                <th>EndDate</th>
+                <th>Owner</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let d of taskData">
+                <td>{{ d.taskId }}</td>
+                <td>{{ d.name }}</td>
+                <td>{{ d.startDate }}</td>
+                <td>{{ d.endDate }}</td>
+                <td>{{ d.owner }}</td>
+                <td>{{ d.status }}</td>
+            </tr>
+
+        </tbody>
+
+    </table>
+
+</div>
