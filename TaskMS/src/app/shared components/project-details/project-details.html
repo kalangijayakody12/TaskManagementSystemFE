@@ -1,16 +1,18 @@
 <app-navbar></app-navbar>
 
 <div class="project-details">   
-    <div class="project-details-header">
-         <h2>Projects: {{projectId}}</h2>
+    <div class="project-details-header" *ngIf="projectData">
+         <h3>{{projectData?.projectName}}</h3>
+         <h4>Status: {{projectData?.projectStatus}}</h4>
+           
     </div>
 
     <div class="project-details-content">
         <div class="task-create">
-            <button (click)="createTask()">(+) task</button>
+            <button (click)="createTask(projectId)">(+) task</button>
         </div>
         <div class="project-tasks">
-            <app-task></app-task>
+            <app-task [projectId]="projectId"></app-task>
         </div>
 
     </div>

@@ -1,5 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component, Input } from '@angular/core';
+import { TaskService } from '../../core/services/task-service';
+import { TaskDto } from './dto/task.dto';
 
 @Component({
   selector: 'app-task',
@@ -9,13 +11,48 @@ import { Component } from '@angular/core';
   styleUrl: './task.scss',
 })
 export class Task {
+  @Input() projectId:string="";
+  taskData:TaskDto[]=[];
 
-  taskData = [
-    { taskId: 1, name: 'Design UI', startDate: '2023-01-01', endDate: '2023-01-15', owner: 'John Doe', status: 'Pending' },
-    { taskId: 2, name: 'Backend API', startDate: '2023-01-10', endDate: '2023-01-25', owner: 'Jane Smith', status: 'In Progress' },
-    { taskId: 3, name: 'Testing', startDate: '2023-01-20', endDate: '2023-01-30', owner: 'Alice Johnson', status: 'Completed' },    
-    { taskId: 4, name: 'Deployment', startDate: '2023-01-25', endDate: '2023-02-05', owner: 'Bob Brown', status: 'Pending' },
-    { taskId: 5, name: 'Documentation', startDate: '2023-01-15', endDate: '2023-01-30', owner: 'Charlie Davis', status: 'In Progress' }
-  ]
-  
+  constructor(private taskService:TaskService, private cdr:ChangeDetectorRef) {}
+ 
+  ngOnInit(){
+    if(this.projectId){
+      this.getProjectTasks(this.projectId);
+    }
+    else{
+      this.loadAllTasks();
+    }
+    
+  }
+
+  getProjectTasks(projectId:string){
+    this.taskService.getProjectTasks(projectId).subscribe({
+      next:(res)=>{
+        console.log("Task data received:", res);
+        this.taskData = res;
+        this.cdr.detectChanges();
+      },
+      error:(err)=>{
+        console.error("Error fetching task data: ", err);
+      }
+    })
+}
+
+  loadAllTasks(){
+    this.taskService.loadAllTasks().subscribe({
+      next:(res)=>{
+        console.log("All tasks: ", res);
+        this.taskData =res;
+        this.cdr.detectChanges();
+      },
+      error:(err)=>{
+        console.error("Error in loading all tasks: ", err);
+      }
+    })
+  }
+
+
+
+
 }

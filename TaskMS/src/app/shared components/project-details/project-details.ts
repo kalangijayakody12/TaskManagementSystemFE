@@ -1,34 +1,64 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Task } from '../task/task';
 import { MatDialog } from '@angular/material/dialog';
 import { TaskPopup } from '../task-popup/task-popup';
 import { Navbar } from '../navbar/navbar';
+import { TaskService } from '../../core/services/task-service';
+import { ProjectService } from '../../core/services/project-service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-project-details',
   standalone:true,
-  imports: [Task, Navbar],
+  imports: [Task, Navbar, CommonModule],
   templateUrl: './project-details.html',
   styleUrl: './project-details.scss',
 })
 export class ProjectDetails {
+  @ViewChild(Task) taskComponent!: Task;
 
-  projectId!: number;
+  projectId!: string;
+  projectData:any = null;
 
-  constructor(private route: ActivatedRoute, public dialog: MatDialog) {
-    this.projectId = Number(this.route.snapshot.paramMap.get('projectId'));
+  constructor(private route: ActivatedRoute, public dialog: MatDialog, private taskService:TaskService, private projectService: ProjectService, private cdr: ChangeDetectorRef) {  }
 
-    console.log(`Project ID from route: ${this.projectId}`);
-  }  
+  ngOnInit() {
+    this.projectId = this.route.snapshot.paramMap.get('projectId') ?? '';
+    console.log(`Project ID from route: ${this.projectId}`); 
+    this.getProjectDetails();
+  }
 
-  createTask(){
-    console.log(`Create task for project ID: ${this.projectId}`);
+  createTask(projectId:string){
+    console.log(`Create task for project ID: ${projectId}`);
 
     let dialogRef = this.dialog.open(TaskPopup, {
       height: '70%',
       width: '20rem',
+      data: {
+      projectId: projectId
+    }
     });
+
+    dialogRef.afterClosed().subscribe(
+      res=>{
+        console.log("dialog closed", res);
+        this.taskComponent.getProjectTasks(projectId);
+        })
   }
+
+  getProjectDetails(){
+    this.projectService.getProjectById(this.projectId).subscribe({
+      next:(res)=>{
+        this.projectData = res;
+        console.log("Project details: ", res);
+        this.cdr.detectChanges();
+      },
+      error:(err)=>{
+        console.error("Error in fetching project details: ", err);
+      }
+    })
+  }
+
  
 }

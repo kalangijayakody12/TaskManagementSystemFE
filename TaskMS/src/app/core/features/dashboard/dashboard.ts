@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, NgZone, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, NgZone, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Task } from '../../../shared components/task/task';
 import { Navbar } from '../../../shared components/navbar/navbar';
@@ -15,6 +15,7 @@ import { ProjectComponent } from '../../../shared components/project-component/p
   styleUrls: ['./dashboard.scss'],
 })
 export class Dashboard implements OnInit{
+  @ViewChild(ProjectComponent) projectComponent!: ProjectComponent;
 
   constructor(public dialog: MatDialog, private projectService:ProjectService,private zone: NgZone,  private cdr: ChangeDetectorRef){
     
@@ -28,10 +29,17 @@ export class Dashboard implements OnInit{
   projects:any[]=[];
 
   createProject(){
-      this.dialog.open(ProjectPopup, {
+      const dialogRef=this.dialog.open(ProjectPopup, {
           height: '70%',
           width: '20rem',
         });
+
+      dialogRef.afterClosed().subscribe(
+        res=>{
+          console.log("dialog closed", res);
+          this.getAllProjects();
+        }
+      )      
   }
 
   getAllProjects(){
@@ -39,10 +47,8 @@ export class Dashboard implements OnInit{
       next:(res:any)=>{
         console.log("Projects: ", res);
         this.projects = res;
-        console.log('Inside zone in API?', NgZone.isInAngularZone());
+        // console.log('Inside zone in API?', NgZone.isInAngularZone());
         this.cdr.detectChanges();
-        console.log("Tsfkdl: ", this.projects);
-
       },
       error: (err)=>{
         console.error('Error in fetching projects', err);

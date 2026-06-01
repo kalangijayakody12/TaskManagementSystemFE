@@ -8,19 +8,22 @@
                 <th>Name</th>
                 <th>StartDate</th>
                 <th>EndDate</th>
-                <th>Owner</th>
                 <th>Status</th>
             </tr>
         </thead>
 
         <tbody>
+             <tr *ngIf="taskData.length === 0">
+                <td colspan="6" style="text-align:center;">
+                No tasks available
+                </td>
+            </tr>
             <tr *ngFor="let d of taskData">
                 <td>{{ d.taskId }}</td>
-                <td>{{ d.name }}</td>
-                <td>{{ d.startDate }}</td>
-                <td>{{ d.endDate }}</td>
-                <td>{{ d.owner }}</td>
-                <td>{{ d.status }}</td>
+                <td>{{ d.taskName }}</td>
+                <td>{{ d.taskStartDate | date:'yyyy-MM-dd'}}</td>
+                <td>{{ d.taskDueDate | date:'yyyy-MM-dd'}}</td>
+                <td>{{ d.taskStatus }}</td>
             </tr>
 
         </tbody>

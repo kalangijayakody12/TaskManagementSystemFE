@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectorRef, Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { ProjectService } from '../../core/services/project-service';
 
 @Component({
   selector: 'app-project-component',
@@ -9,14 +10,25 @@ import { Router } from '@angular/router';
   styleUrl: './project-component.scss',
 })
 export class ProjectComponent {
-  @Input() projectId!:number;
+  @Input() projectId!:string;
   @Input() projectName!:string;
   // @Input() remainingTasks!:number;
 
-  constructor(private router: Router) {}
+  projectData = {};
 
-  onProjectClick(projectId:number){
+  constructor(private router: Router, private projectService:ProjectService) {}
+
+  onProjectClick(projectId:string){
     console.log(`Project clicked: ${projectId}`);
+    this.projectService.getProjectById(projectId).subscribe({
+      next:(res)=>{
+        this.projectData = res;
+      },
+      error:(err)=>{
+        console.error("error in fetching project: ", err);
+      }
+    })
+
     this.router.navigate(['/project', projectId]);
   }
 }
