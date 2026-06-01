@@ -8,6 +8,17 @@
     color: white;
 }
 
+.project-details-header h3 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.project-details-header h4 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #ccc;
+}
+
 .project-details-content {
     display: flex;
     flex-direction: column;
