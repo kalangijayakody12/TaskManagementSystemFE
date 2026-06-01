@@ -7,6 +7,7 @@ import { LoginDto } from '../dto/login.dto';
 
 @Component({
   selector: 'app-login',
+  standalone:true,
   imports: [ReactiveFormsModule, CommonModule, RouterLink],
   templateUrl: './login.html',
   styleUrl: './login.scss',
@@ -31,8 +32,9 @@ export class Login {
       }
 
       this.authService.login(loginDto).subscribe({
-          next: () => {
-            console.log('Login successful');
+          next: (res: any) => {
+            console.log('Login successful', res);
+            localStorage.setItem('access_token', res.accessToken);
             this.router.navigate(['/dashboard']);
           },
           error: (err) => {

@@ -1,0 +1,19 @@
+.project-popup-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+}
+
+.project-form form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.project-form input {
+    margin-bottom: 0.8rem;
+    padding: 0.5rem;
+    width: 12rem;
+}
+

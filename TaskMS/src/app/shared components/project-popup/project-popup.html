@@ -1,0 +1,17 @@
+<div class="project-popup-container">
+
+  <h2>New Project</h2>
+  <div class="project-form" >
+    <form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
+        <label for="projectName">Name:</label>
+        <input id="projectName" name="projectName" type="text" formControlName="projectName">
+    
+        <label for="startDate">Start Date:</label>
+        <input id="startDate" name="startDate" type="date" formControlName="startDate">
+    
+        <button type="submit">Create Project</button>
+    
+    </form>
+  </div>
+
+</div>
