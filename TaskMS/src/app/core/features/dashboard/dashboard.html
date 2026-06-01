@@ -2,7 +2,10 @@
 
 <div class="dashboard-content">
     <div class="projects-section">
-        <app-project *ngFor="let project of projects" [projectId]="project.projectId" [projectName]="project.projectName" [remainingTasks]="project.remainingTasks"></app-project>
+        <div class="project-create">
+            <button (click)="createProject()">(+) project</button>
+        </div>
+         <app-project-component *ngFor="let project of projects" [projectId]="project.projectId" [projectName]="project.projectName"></app-project-component>
     </div>
     <div class="tasks-section">
         <div class="recent-tasks">

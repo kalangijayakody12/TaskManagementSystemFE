@@ -1,21 +1,59 @@
-import { Component } from '@angular/core';
-import { Project } from '../../../shared components/project/project';
+import { ChangeDetectorRef, Component, NgZone, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Task } from '../../../shared components/task/task';
 import { Navbar } from '../../../shared components/navbar/navbar';
+import { MatDialog } from '@angular/material/dialog';
+import { ProjectPopup } from '../../../shared components/project-popup/project-popup';
+import { ProjectService } from '../../services/project-service';
+import { ProjectComponent } from '../../../shared components/project-component/project-component';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [Project, CommonModule, Task, Navbar],
+  standalone:true,
+  imports: [ CommonModule, Task, Navbar, ProjectComponent],
   templateUrl: './dashboard.html',
-  styleUrl: './dashboard.scss',
+  styleUrls: ['./dashboard.scss'],
 })
-export class Dashboard {
+export class Dashboard implements OnInit{
 
-    projects = [
-    { projectId: 1, projectName: 'Project 1', remainingTasks: 5 },
-    { projectId: 2, projectName: 'Project 2', remainingTasks: 3 },
-    { projectId: 3, projectName: 'Project 3', remainingTasks: 8 }
-    ];
+  constructor(public dialog: MatDialog, private projectService:ProjectService,private zone: NgZone,  private cdr: ChangeDetectorRef){
+    
+  }
+
+  ngOnInit() {
+    console.log('Inside Angular zone?', NgZone.isInAngularZone());
+    this.getAllProjects();
+  }
+
+  projects:any[]=[];
+
+  createProject(){
+      this.dialog.open(ProjectPopup, {
+          height: '70%',
+          width: '20rem',
+        });
+  }
+
+  getAllProjects(){
+    this.projectService.getAllProjects().subscribe({
+      next:(res:any)=>{
+        console.log("Projects: ", res);
+        this.projects = res;
+        console.log('Inside zone in API?', NgZone.isInAngularZone());
+        this.cdr.detectChanges();
+        console.log("Tsfkdl: ", this.projects);
+
+      },
+      error: (err)=>{
+        console.error('Error in fetching projects', err);
+      }
+    })
+
+
+  }
+
+  
+
+
 
 }

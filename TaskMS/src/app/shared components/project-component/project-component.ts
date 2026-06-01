@@ -2,23 +2,21 @@ import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-project',
+  selector: 'app-project-component',
+  standalone:true,
   imports: [],
-  templateUrl: './project.html',
-  styleUrl: './project.scss',
+  templateUrl: './project-component.html',
+  styleUrl: './project-component.scss',
 })
-export class Project {
-
+export class ProjectComponent {
   @Input() projectId!:number;
   @Input() projectName!:string;
-  @Input() remainingTasks!:number;
+  // @Input() remainingTasks!:number;
 
   constructor(private router: Router) {}
 
   onProjectClick(projectId:number){
     console.log(`Project clicked: ${projectId}`);
-
     this.router.navigate(['/project', projectId]);
   }
-
 }
