@@ -18,7 +18,8 @@
                 No tasks available
                 </td>
             </tr>
-            <tr *ngFor="let d of taskData">
+
+            <tr *ngFor="let d of taskData" (click)="onTaskClick(d._id)">  
                 <td>{{ d.taskId }}</td>
                 <td>{{ d.taskName }}</td>
                 <td>{{ d.taskStartDate | date:'yyyy-MM-dd'}}</td>

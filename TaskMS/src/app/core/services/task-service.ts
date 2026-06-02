@@ -23,5 +23,8 @@ export class TaskService {
     return this.http.get(`${this.apiUrl}`);
   }
 
-  
+  getTaskDetails(taskId:string):Observable<any>{
+    return this.http.get(`${this.apiUrl}/${taskId}`);
+  }
+
 }

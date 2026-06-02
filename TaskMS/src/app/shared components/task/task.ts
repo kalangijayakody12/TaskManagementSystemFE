@@ -2,6 +2,8 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectorRef, Component, Input } from '@angular/core';
 import { TaskService } from '../../core/services/task-service';
 import { TaskDto } from './dto/task.dto';
+import { MatDialog } from '@angular/material/dialog';
+import { TaskDetailsComponent } from '../task-details-component/task-details-component';
 
 @Component({
   selector: 'app-task',
@@ -14,7 +16,7 @@ export class Task {
   @Input() projectId:string="";
   taskData:TaskDto[]=[];
 
-  constructor(private taskService:TaskService, private cdr:ChangeDetectorRef) {}
+  constructor(private taskService:TaskService, private cdr:ChangeDetectorRef, public dialog: MatDialog,) {}
  
   ngOnInit(){
     if(this.projectId){
@@ -50,6 +52,20 @@ export class Task {
         console.error("Error in loading all tasks: ", err);
       }
     })
+  }
+
+  onTaskClick(taskId:string){
+    console.log(`Task clicked: ${taskId}`);
+
+    const taskDetailsDialogRef = this.dialog.open(TaskDetailsComponent ,{
+      height: '70%',
+      width: '20rem',
+      data: {
+        _id: taskId
+      }
+    })
+
+
   }
 
 
