@@ -2,10 +2,12 @@ import { ChangeDetectorRef, Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TaskService } from '../../core/services/task-service';
 import { TaskDto } from '../task/dto/task.dto';
+import { CardModule } from 'primeng/card';
+// import { DropdownModule } from 'primeng/dropdown';
 
 @Component({
   selector: 'app-task-details-component',
-  imports: [],
+  imports: [CardModule],
   templateUrl: './task-details-component.html',
   styleUrl: './task-details-component.scss',
 })
@@ -34,5 +36,14 @@ export class TaskDetailsComponent {
       }
     })
   }
+
+  getStatusSeverity(status: string) {
+  switch (status) {
+    case 'Done': return 'success';
+    case 'In Progress': return 'warning';
+    case 'Open': return 'info';
+    default: return 'secondary';
+  }
+}
 
 }

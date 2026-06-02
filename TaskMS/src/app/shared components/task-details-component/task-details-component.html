@@ -1,3 +1,44 @@
-<h2>
-    {{taskDetails.taskId}} - {{taskDetails.taskName}}KS
-</h2>
+<p-card styleClass="task-card shadow-2 border-round-xl mb-3">
+
+  <div class="flex flex-column gap-2">
+
+    <div class="text-sm text-500">
+      Task ID
+    </div>
+    <div class="font-semibold">
+      {{taskDetails.taskId}}
+    </div>
+
+    <div class="text-sm text-500 mt-2">
+      Task Name
+    </div>
+    <div class="font-semibold">
+      {{taskDetails.taskName}}
+    </div>
+
+    <!-- <div class="mt-3 flex flex-column gap-2">
+      <span class="text-sm text-500">Task Status</span>
+
+      <p-dropdown
+        [options]="statusOptions"
+        [(ngModel)]="taskDetails.status"
+        placeholder="Select Status"
+        styleClass="w-full">
+      </p-dropdown>
+    </div>
+
+    <div class="mt-3 flex flex-column gap-2">
+      <span class="text-sm text-500">Assigned Members</span>
+
+      <p-multiSelect
+        [options]="memberOptions"
+        [(ngModel)]="taskDetails.assignedMembers"
+        placeholder="Select Members"
+        display="chip"
+        styleClass="w-full">
+      </p-multiSelect>
+    </div> -->
+
+  </div>
+
+</p-card>
