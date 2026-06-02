@@ -30,7 +30,6 @@ export class ProjectComponent {
         console.error("error in fetching project: ", err);
       }
     })
-
     this.router.navigate(['/project', projectId]);
   }
 }

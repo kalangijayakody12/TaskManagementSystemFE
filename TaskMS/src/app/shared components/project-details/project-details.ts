@@ -7,11 +7,13 @@ import { Navbar } from '../navbar/navbar';
 import { TaskService } from '../../core/services/task-service';
 import { ProjectService } from '../../core/services/project-service';
 import { CommonModule } from '@angular/common';
+import { CardModule } from 'primeng/card';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-project-details',
   standalone:true,
-  imports: [Task, Navbar, CommonModule],
+  imports: [Task, Navbar, CommonModule, CardModule, ButtonModule],
   templateUrl: './project-details.html',
   styleUrl: './project-details.scss',
 })
