@@ -1,16 +1,34 @@
 <app-navbar></app-navbar>
 
-<div class="dashboard-content">
-    <div class="projects-section">
-        <div class="project-create">
-            <button (click)="createProject()">(+) project</button>
+<div class="grid p-3 surface-100">
+
+  <div class="col-12 lg:col-4">
+    <p-card header="Projects" styleClass="dashboard-card h-full w-full shadow-2 border-round-xl">
+        <div class="flex justify-content-end">
+            <p-button
+                label="New Project"
+                icon="pi pi-plus"
+                severity="success"
+                size="small"
+                (click)="createProject()">
+            </p-button>
         </div>
-         <app-project-component *ngFor="let project of projects" [projectId]="project._id" [projectName]="project.projectName"></app-project-component>
-    </div>
-    <div class="tasks-section">
-        <div class="recent-tasks">
-            <h3>Recent Tasks</h3>
-            <app-task></app-task>
+    
+        <div class="projects-list mt-2 flex flex-column align-items-center w-full">
+            <app-project-component
+            *ngFor="let project of projects"
+            [projectId]="project._id"
+            [projectName]="project.projectName"
+            [projectStatus]="project.projectStatus">
+            </app-project-component>
         </div>
-    </div>
+    </p-card>
+  </div>
+
+  <div class="col-12 lg:col-8">
+    <p-card header="Recent Tasks" styleClass="dashboard-card h-full w-full shadow-2 border-round-xl">
+      <app-task></app-task>
+    </p-card>
+  </div>
+
 </div>

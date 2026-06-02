@@ -1,4 +1,7 @@
-<div class="project-card" (click)="onProjectClick(projectId)">
-    <h2>{{projectName}}</h2>  
+<p-card class="project-card" (click)="onProjectClick(projectId)" styleClass="h-full w-22rem m-2 justify-content cursor-pointer hover:shadow-lg transition-shadow duration-300">
+    <ng-template #title>{{projectName}}</ng-template>
+    <ng-template #content>
+        {{projectStatus}}
+    </ng-template>
     <!-- <p>Remaining Tasks: {{remainingTasks}}</p> -->
-</div>
+</p-card>

@@ -6,20 +6,20 @@ import { MatDialog } from '@angular/material/dialog';
 import { ProjectPopup } from '../../../shared components/project-popup/project-popup';
 import { ProjectService } from '../../services/project-service';
 import { ProjectComponent } from '../../../shared components/project-component/project-component';
-
+import { ButtonModule } from 'primeng/button';
+import { CardModule } from 'primeng/card';
+import { PanelModule } from 'primeng/panel';
 @Component({
   selector: 'app-dashboard',
   standalone:true,
-  imports: [ CommonModule, Task, Navbar, ProjectComponent],
+  imports: [ CommonModule, Task, Navbar, ProjectComponent, ButtonModule, CardModule, PanelModule],
   templateUrl: './dashboard.html',
   styleUrls: ['./dashboard.scss'],
 })
 export class Dashboard implements OnInit{
   @ViewChild(ProjectComponent) projectComponent!: ProjectComponent;
 
-  constructor(public dialog: MatDialog, private projectService:ProjectService,private zone: NgZone,  private cdr: ChangeDetectorRef){
-    
-  }
+  constructor(public dialog: MatDialog, private projectService:ProjectService,private zone: NgZone,  private cdr: ChangeDetectorRef){}
 
   ngOnInit() {
     console.log('Inside Angular zone?', NgZone.isInAngularZone());

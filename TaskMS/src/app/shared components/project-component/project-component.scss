@@ -1,15 +1,3 @@
-.project-card {
-    border: 1px solid #cccccc;
-    border-radius: 1rem;
-    padding: 0.5rem;
-    margin: 0.5rem;
-    background-color: #bddfe8;
-    width: 20vw;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
 .project-card:hover {
-    background-color: #005fa3;
-    color: white;
+  background-color: #d0d5ed;
 }

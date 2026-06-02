@@ -1,19 +1,25 @@
 <app-navbar></app-navbar>
 
-<div class="project-details">   
-    <div class="project-details-header" *ngIf="projectData">
-         <h3>{{projectData?.projectName}}</h3>
-         <h4>Status: {{projectData?.projectStatus}}</h4>
-           
-    </div>
+<div class="grid p-3 surface-100">   
+    <div class="col-12">
+        <p-card>
+            <ng-template #title>{{projectData?.projectName}}</ng-template>
+            <ng-template #subtitle>{{projectData?.projectStatus}}</ng-template>
 
-    <div class="project-details-content">
-        <div class="task-create">
-            <button (click)="createTask(projectId)">(+) task</button>
-        </div>
-        <div class="project-tasks">
-            <app-task [projectId]="projectId"></app-task>
-        </div>
+            <ng-template #content>
+                <div class="flex justify-content-end" >
+                    <p-button 
+                        label="New Task" 
+                        icon="pi pi-plus"
+                        severity="success"
+                        size="small"
+                        (click)="createTask(projectId)">
+                    </p-button>
+                </div>
+                
+                <app-task [projectId]="projectId"></app-task>
 
+            </ng-template>
+        </p-card>
     </div>
 </div>

@@ -1,17 +1,19 @@
-import { ChangeDetectorRef, Component, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProjectService } from '../../core/services/project-service';
+import { CardModule } from 'primeng/card';
 
 @Component({
   selector: 'app-project-component',
   standalone:true,
-  imports: [],
+  imports: [CardModule],
   templateUrl: './project-component.html',
   styleUrl: './project-component.scss',
 })
 export class ProjectComponent {
   @Input() projectId!:string;
   @Input() projectName!:string;
+  @Input() projectStatus!:string;
   // @Input() remainingTasks!:number;
 
   projectData = {};
@@ -28,7 +30,6 @@ export class ProjectComponent {
         console.error("error in fetching project: ", err);
       }
     })
-
     this.router.navigate(['/project', projectId]);
   }
 }
