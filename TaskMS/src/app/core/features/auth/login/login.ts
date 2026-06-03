@@ -34,13 +34,13 @@ export class Login {
       this.authService.login(loginDto).subscribe({
           next: (res: any) => {
             console.log('Login successful', res);
-            // this.authService.setUser(res);
+
             localStorage.setItem('access_token', res.accessToken);
             console.log(
               'Stored token:',
               localStorage.getItem('access_token')
             );
-            // localStorage.setItem('userRole', res.role);
+
             localStorage.setItem('user', JSON.stringify({
               id: res._id,
               name: res.name,

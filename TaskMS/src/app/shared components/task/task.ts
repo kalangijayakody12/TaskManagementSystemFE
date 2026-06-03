@@ -56,8 +56,8 @@ export class Task {
 
   onTaskClick(taskId:string){
     const taskDetailsDialogRef = this.dialog.open(TaskDetailsComponent ,{
-      height: '70%',
-      width: '20rem',
+      height: '90%',
+      width: '30rem',
       data: {
         _id: taskId
       }

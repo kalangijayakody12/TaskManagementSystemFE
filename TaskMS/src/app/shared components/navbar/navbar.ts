@@ -18,7 +18,6 @@ export class Navbar implements OnInit {
   constructor(private authService:AuthService, private router:Router){
   }
    toggleProfileMenu(id:string) {
-      // console.log('Profile menu toggled');
       this.showProfileMenu = !this.showProfileMenu;
     }
 
@@ -32,10 +31,9 @@ export class Navbar implements OnInit {
   }
 
   logout() {
-    localStorage.removeItem('token');
+    localStorage.removeItem('access_token');
     localStorage.removeItem('user');
-
-    this.router.navigate(['/login']);
+    this.router.navigate(['']);
   }
 
   items = [

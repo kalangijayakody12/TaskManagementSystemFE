@@ -45,7 +45,11 @@ export class Register {
             'Stored token:',
             localStorage.getItem('access_token')
           );
-          localStorage.setItem('userRole', res.role);
+          localStorage.setItem('user', JSON.stringify({
+              id: res._id,
+              name: res.name,
+              role: res.role
+            }));
           this.router.navigate(['/dashboard']);
         },
         error : (err) =>{
