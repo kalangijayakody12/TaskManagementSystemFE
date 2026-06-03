@@ -1,17 +1,55 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../core/services/auth-service';
+import { Router } from '@angular/router';
+import { MenuModule } from 'primeng/menu';
 
 @Component({
   selector: 'app-navbar',
   standalone:true,
-  imports: [],
+  imports: [MenuModule],
   templateUrl: './navbar.html',
   styleUrl: './navbar.scss',
 })
-export class Navbar {
+export class Navbar implements OnInit {
+  currentUser:any;
+  showProfileMenu = false;
 
-   toggleProfileMenu() {
-      console.log('Profile menu toggled');
+
+  constructor(private authService:AuthService, private router:Router){
+  }
+   toggleProfileMenu(id:string) {
+      // console.log('Profile menu toggled');
+      this.showProfileMenu = !this.showProfileMenu;
     }
+
+    ngOnInit(){
+      this.currentUser = this.authService.getUser();
+    }
+
+    goToProfile() {
+    this.router.navigate(['/profile']);
+    this.showProfileMenu = false;
+  }
+
+  logout() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+
+    this.router.navigate(['/login']);
+  }
+
+  items = [
+  {
+    label: 'Profile',
+    icon: 'pi pi-user',
+    command: () => this.goToProfile()
+  },
+  {
+    label: 'Logout',
+    icon: 'pi pi-sign-out',
+    command: () => this.logout()
+  }
+];
 
 
 }

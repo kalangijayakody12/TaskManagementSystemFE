@@ -4,11 +4,12 @@ import { TaskService } from '../../core/services/task-service';
 import { TaskDto } from './dto/task.dto';
 import { MatDialog } from '@angular/material/dialog';
 import { TaskDetailsComponent } from '../task-details-component/task-details-component';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-task',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ButtonModule],
   templateUrl: './task.html',
   styleUrl: './task.scss',
 })
@@ -16,7 +17,7 @@ export class Task {
   @Input() projectId:string="";
   taskData:TaskDto[]=[];
 
-  constructor(private taskService:TaskService, private cdr:ChangeDetectorRef, public dialog: MatDialog,) {}
+  constructor(private taskService:TaskService, private cdr:ChangeDetectorRef, public dialog: MatDialog) {}
  
   ngOnInit(){
     if(this.projectId){
@@ -31,7 +32,6 @@ export class Task {
   getProjectTasks(projectId:string){
     this.taskService.getProjectTasks(projectId).subscribe({
       next:(res)=>{
-        console.log("Task data received:", res);
         this.taskData = res;
         this.cdr.detectChanges();
       },
@@ -55,8 +55,6 @@ export class Task {
   }
 
   onTaskClick(taskId:string){
-    console.log(`Task clicked: ${taskId}`);
-
     const taskDetailsDialogRef = this.dialog.open(TaskDetailsComponent ,{
       height: '70%',
       width: '20rem',
@@ -65,10 +63,35 @@ export class Task {
       }
     })
 
-
+    taskDetailsDialogRef.afterClosed().subscribe(
+      ()=>{
+        if(this.projectId){
+            this.getProjectTasks(this.projectId);
+        }
+        else{
+          this.loadAllTasks();
+        }
+      })
   }
 
+  onDeleteClick(taskId:string){
+    console.log(`Delete task: ${taskId}`);
 
+    this.taskService.deleteTask(taskId).subscribe({
+      next:(res)=>{
+        console.log("Task deleted successfully: ", res);
+        if(this.projectId){
+          this.getProjectTasks(this.projectId);
+        }
+        else{
+          this.loadAllTasks();
+        }
 
+      },
+      error:(err)=>{
+        console.error("Error in deleting task: ", err);
+      }
+    })
+  }
 
 }

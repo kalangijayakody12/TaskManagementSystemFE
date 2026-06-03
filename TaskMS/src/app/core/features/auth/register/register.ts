@@ -38,8 +38,14 @@ export class Register {
       }
 
       this.authService.register(registerDto).subscribe({
-        next: () =>{
-          console.log('Registration successful');
+        next: (res) =>{
+          console.log('Registration successful', res);
+          localStorage.setItem('access_token', res.accessToken);
+          console.log(
+            'Stored token:',
+            localStorage.getItem('access_token')
+          );
+          localStorage.setItem('userRole', res.role);
           this.router.navigate(['/dashboard']);
         },
         error : (err) =>{

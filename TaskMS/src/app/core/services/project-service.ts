@@ -16,11 +16,15 @@ export class ProjectService {
   }
 
   getAllProjects():Observable<any>{
-    return this.http.get(`${this.apiUrl}`);
+    return this.http.get<any[]>(`${this.apiUrl}`);
   }
 
   getProjectById(projectId:string):Observable<any>{
     return this.http.get(`${this.apiUrl}/${projectId}`); 
   }
 
+  deleteProject(projectId:string):Observable<any>{
+    return this.http.delete(`${this.apiUrl}/${projectId}`);
+  }
+    
 }

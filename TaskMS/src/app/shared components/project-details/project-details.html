@@ -1,4 +1,4 @@
-<app-navbar></app-navbar>
+<app-navbar ></app-navbar>
 
 <div class="grid p-3 surface-100">   
     <div class="col-12">
@@ -14,6 +14,13 @@
                         severity="success"
                         size="small"
                         (click)="createTask(projectId)">
+                    </p-button>
+                    <p-button 
+                        label="Delete Project" 
+                        icon="pi pi-trash"
+                        severity="danger"
+                        size="small"
+                        (click)="deleteProject(projectId)">
                     </p-button>
                 </div>
                 

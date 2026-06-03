@@ -1,11 +1,27 @@
 <div class="navbar-container">
     <div class="profile">
-            <img src="assets/images/profile.png" alt="Profile" (click)="toggleProfileMenu()">    
+        <p-menu #menu [popup]="true" [model]="items"></p-menu>
+        <img src="assets/images/profile.png" (click)="menu.toggle($event)" alt="Profile">    
         <div>
-            <p id="welcome-message">Welcome, user</p>
-            <p id="user-role">Role</p>
+            <p id="welcome-message">Welcome, {{currentUser?.name}}</p>
+            <p id="user-role">{{currentUser?.role}}</p>
         </div>  
     </div>
+
+     <!-- <div
+            class="profile-menu"
+            *ngIf="showProfileMenu">
+
+            <button (click)="goToProfile()">
+                Profile
+            </button>
+
+            <button (click)="logout()">
+                Logout
+            </button>
+
+        </div> -->
+
 
     <div class="navbar-title">
         <h2>Task Management System</h2>
