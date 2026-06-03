@@ -4,11 +4,12 @@ import { TaskService } from '../../core/services/task-service';
 import { TaskDto } from './dto/task.dto';
 import { MatDialog } from '@angular/material/dialog';
 import { TaskDetailsComponent } from '../task-details-component/task-details-component';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-task',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ButtonModule],
   templateUrl: './task.html',
   styleUrl: './task.scss',
 })
@@ -71,6 +72,26 @@ export class Task {
           this.loadAllTasks();
         }
       })
+  }
+
+  onDeleteClick(taskId:string){
+    console.log(`Delete task: ${taskId}`);
+
+    this.taskService.deleteTask(taskId).subscribe({
+      next:(res)=>{
+        console.log("Task deleted successfully: ", res);
+        if(this.projectId){
+          this.getProjectTasks(this.projectId);
+        }
+        else{
+          this.loadAllTasks();
+        }
+
+      },
+      error:(err)=>{
+        console.error("Error in deleting task: ", err);
+      }
+    })
   }
 
 }

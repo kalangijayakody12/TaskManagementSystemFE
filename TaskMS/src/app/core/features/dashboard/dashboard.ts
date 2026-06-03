@@ -47,7 +47,6 @@ export class Dashboard implements OnInit{
       next:(res:any)=>{
         console.log("Projects: ", res);
         this.projects = res;
-        // console.log('Inside zone in API?', NgZone.isInAngularZone());
         this.cdr.detectChanges();
       },
       error: (err)=>{

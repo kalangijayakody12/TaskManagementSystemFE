@@ -31,4 +31,8 @@ export class TaskService {
     return this.http.patch(`${this.apiUrl}/${taskUpdateDto._id}` , taskUpdateDto);
   }
 
+  deleteTask(taskId:string):Observable<any>{
+    return this.http.delete(`${this.apiUrl}/${taskId}`);
+  }
+
 }

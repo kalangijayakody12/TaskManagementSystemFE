@@ -4,7 +4,7 @@
 
   <div class="col-12 lg:col-4">
     <p-card header="Projects" styleClass="dashboard-card h-full w-full shadow-2 border-round-xl">
-        <div class="flex justify-content-end" *ngIf="authService.hasRole('admin')">
+        <div class="flex justify-content-end" *ngIf="this.authService.hasRole('admin')">
             <p-button
                 label="New Project"
                 icon="pi pi-plus"
