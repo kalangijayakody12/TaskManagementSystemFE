@@ -15,6 +15,13 @@
                         size="small"
                         (click)="createTask(projectId)">
                     </p-button>
+                    <p-button 
+                        label="Delete Project" 
+                        icon="pi pi-trash"
+                        severity="danger"
+                        size="small"
+                        (click)="deleteProject(projectId)">
+                    </p-button>
                 </div>
                 
                 <app-task [projectId]="projectId"></app-task>

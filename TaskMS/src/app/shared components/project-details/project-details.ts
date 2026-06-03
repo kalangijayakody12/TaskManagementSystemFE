@@ -1,10 +1,9 @@
 import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Task } from '../task/task';
 import { MatDialog } from '@angular/material/dialog';
 import { TaskPopup } from '../task-popup/task-popup';
 import { Navbar } from '../navbar/navbar';
-import { TaskService } from '../../core/services/task-service';
 import { ProjectService } from '../../core/services/project-service';
 import { CommonModule } from '@angular/common';
 import { CardModule } from 'primeng/card';
@@ -23,7 +22,7 @@ export class ProjectDetails {
   projectId!: string;
   projectData:any = null;
 
-  constructor(private route: ActivatedRoute, public dialog: MatDialog, private taskService:TaskService, private projectService: ProjectService, private cdr: ChangeDetectorRef) {  }
+  constructor(private route: ActivatedRoute, public dialog: MatDialog,  private projectService: ProjectService, private cdr: ChangeDetectorRef, private router: Router) {  }
 
   ngOnInit() {
     this.projectId = this.route.snapshot.paramMap.get('projectId') ?? '';
@@ -58,6 +57,18 @@ export class ProjectDetails {
       },
       error:(err)=>{
         console.error("Error in fetching project details: ", err);
+      }
+    })
+  }
+
+  deleteProject(projectId:string){
+    this.projectService.deleteProject(projectId).subscribe({
+      next:(res)=>{
+        console.log("Project deleted successfully: ", res);
+        this.router.navigate(['/dashboard']);
+      },
+      error:(err)=>{
+        console.error("Error in deleting project: ", err);
       }
     })
   }
