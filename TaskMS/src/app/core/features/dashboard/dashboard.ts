@@ -23,7 +23,6 @@ export class Dashboard implements OnInit{
   constructor(public dialog: MatDialog, private projectService:ProjectService,private zone: NgZone,  private cdr: ChangeDetectorRef, public authService:AuthService){}
 
   ngOnInit() {
-    console.log('Inside Angular zone?', NgZone.isInAngularZone());
     this.getAllProjects();
   }
 
@@ -56,11 +55,6 @@ export class Dashboard implements OnInit{
       }
     })
 
-
   }
-
-  
-
-
 
 }

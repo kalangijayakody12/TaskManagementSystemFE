@@ -6,4 +6,5 @@ export interface TaskDto {
     taskStartDate?:Date;
     taskDueDate?:Date;
     taskStatus?:string;
+    taskAssignedMembers?:any[];
 }

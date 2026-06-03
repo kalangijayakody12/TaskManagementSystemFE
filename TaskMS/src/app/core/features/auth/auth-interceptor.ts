@@ -27,11 +27,6 @@ export class AuthInterceptor implements HttpInterceptor {
         }
       });
     }
-
-    console.log("AuthInterceptor - Request URL:", req.url);
-    console.log("AuthInterceptor - Request Headers:", req.headers);
-    console.log("Token:", token);
-
     return next.handle(req);
   }
 

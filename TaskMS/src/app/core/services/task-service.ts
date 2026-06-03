@@ -27,4 +27,8 @@ export class TaskService {
     return this.http.get(`${this.apiUrl}/${taskId}`);
   }
 
+  updateTaskDetails(taskUpdateDto:any):Observable<any>{
+    return this.http.patch(`${this.apiUrl}/${taskUpdateDto._id}` , taskUpdateDto);
+  }
+
 }

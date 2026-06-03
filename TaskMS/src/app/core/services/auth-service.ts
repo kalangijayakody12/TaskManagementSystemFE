@@ -39,10 +39,7 @@ export class AuthService {
   }
 
   getUser(){
-    // return this.user;
-    const user = localStorage.getItem('user');
-    console.log("checking user stroing ",user);
-
+    const user = localStorage.getItem('user');  
     return user ? JSON.parse(user) : null;
   }
 
