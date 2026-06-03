@@ -37,13 +37,13 @@ export class TaskDetailsComponent {
     })
   }
 
-  getStatusSeverity(status: string) {
-  switch (status) {
-    case 'Done': return 'success';
-    case 'In Progress': return 'warning';
-    case 'Open': return 'info';
-    default: return 'secondary';
-  }
-}
+//   getStatusSeverity(status: string) {
+//   switch (status) {
+//     case 'Done': return 'success';
+//     case 'In Progress': return 'warning';
+//     case 'Open': return 'info';
+//     default: return 'secondary';
+//   }
+// }
 
 }

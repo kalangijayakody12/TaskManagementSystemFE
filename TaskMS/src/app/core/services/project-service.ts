@@ -16,7 +16,7 @@ export class ProjectService {
   }
 
   getAllProjects():Observable<any>{
-    return this.http.get(`${this.apiUrl}`);
+    return this.http.get<any[]>(`${this.apiUrl}`);
   }
 
   getProjectById(projectId:string):Observable<any>{

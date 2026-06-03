@@ -9,6 +9,7 @@ import { ProjectComponent } from '../../../shared components/project-component/p
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { PanelModule } from 'primeng/panel';
+import { AuthService } from '../../services/auth-service';
 @Component({
   selector: 'app-dashboard',
   standalone:true,
@@ -19,7 +20,7 @@ import { PanelModule } from 'primeng/panel';
 export class Dashboard implements OnInit{
   @ViewChild(ProjectComponent) projectComponent!: ProjectComponent;
 
-  constructor(public dialog: MatDialog, private projectService:ProjectService,private zone: NgZone,  private cdr: ChangeDetectorRef){}
+  constructor(public dialog: MatDialog, private projectService:ProjectService,private zone: NgZone,  private cdr: ChangeDetectorRef, public authService:AuthService){}
 
   ngOnInit() {
     console.log('Inside Angular zone?', NgZone.isInAngularZone());
