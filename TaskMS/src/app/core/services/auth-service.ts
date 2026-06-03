@@ -25,8 +25,8 @@ export class AuthService {
     if (!isPlatformBrowser(this.platformId)) {
       return null;
     }
-
-    return localStorage.getItem('userRole');
+    const userData = localStorage.getItem('user');
+    return userData ? JSON.parse(userData).role : null;
   }
 
   hasRole(role:string):boolean{
