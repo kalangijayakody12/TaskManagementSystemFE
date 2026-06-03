@@ -1,0 +1,83 @@
+.task-card {
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid #e5e7eb;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    border: 1px solid #24b6cc;
+  }
+}
+
+.section-label {
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+
+.section-value {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.info-block {
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.history-table {
+  width: 100%;
+  margin-top: 0.75rem;
+  border-collapse: collapse;
+  border-radius: 12px;
+
+  thead {
+    background: #24b6cc;
+
+    th {
+      text-align: left;
+      padding: 0.85rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: white;
+      border-bottom: 1px solid #e2e8f0;
+    }
+  }
+
+  tbody {
+    tr {
+      transition: background 0.2s;
+
+      &:hover {
+        background: #f8fafc;
+      }
+    }
+
+    td {
+      padding: 0.85rem;
+      border-bottom: 1px solid #f1f5f9;
+      color: #334155;
+      font-size: 0.9rem;
+    }
+  }
+}
+
+.member-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.member-chip {
+  background: #eff6ff;
+  color: #2563eb;
+  padding: 0.4rem 0.8rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.update-btn {
+  min-width: 180px;
+}

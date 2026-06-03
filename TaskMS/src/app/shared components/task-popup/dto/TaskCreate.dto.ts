@@ -7,4 +7,8 @@ export interface TaskCreateDto{
     taskStatus: string;
     // taskAssignedMember!: string;
     projectBelong: string;
+    taskActivityHistory:
+    {
+        changedBy: string;
+    }[]
 }

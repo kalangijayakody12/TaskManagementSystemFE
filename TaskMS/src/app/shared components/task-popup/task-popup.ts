@@ -3,6 +3,7 @@ import { ChangeDetectorRef, Component, Inject, Input, ViewChild } from '@angular
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { TaskService } from '../../core/services/task-service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { stat } from 'fs';
 
 @Component({
   selector: 'app-task-popup',
@@ -34,7 +35,12 @@ export class TaskPopup {
       taskStartDate:new Date(this.taskForm.value.startDate),
       taskDueDate:new Date(this.taskForm.value.endDate),
       taskStatus:"Not Started",
-      projectBelong:this.data.projectId
+      projectBelong:this.data.projectId,
+      taskActivityHistory:[
+        {
+        changedBy:""
+      }
+    ]
     }
 
     this.taskService.createTask(taskCreateData).subscribe({
